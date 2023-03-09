@@ -1,0 +1,9 @@
+错误位置：EmployeeController中禁用员工状态功能（update方法），此方法将从前端获取员工的id，通过id更新员工的状态。
+错误：通过前端传入后端的long型的id，在数据库中匹配不到employee，导致无法修改成功。
+出错原因：后端传入前端的long型id，前端js会丢失精度
+解决：将long型id改成字符串，传入前端
+技术：消息转换器，自定义消息转换器，添加到mvc框架中
+
+
+cut—thinking：为什么MetaObjectHandler不能为DishController的更新方法，追加更新时间，Dish类里面updateTime也加了@TableField注解，但是数据库里面的updateTime等公共字段并没有随更改而改变
+原因：在service中需要传入属性对应的类，把属性封装在类中，再传入，MetaObjectHandler才会工作
